@@ -5,7 +5,7 @@ class GoYangonHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
           children: [

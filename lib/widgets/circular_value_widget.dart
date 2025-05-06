@@ -15,13 +15,13 @@ class CircularValueWidget extends StatelessWidget {
           height: 100,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 6),
+            border:  Border.all(color: Colors.orange, width: 6),
           ),
           child: Center(
             child: Text(
               '$value $label',
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.orange,
                 fontWeight: FontWeight.bold,
               ),
             ),
