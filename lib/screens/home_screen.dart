@@ -1,68 +1,70 @@
 import 'package:flutter/material.dart';
-import '../widgets/circular_value_widget.dart';
+import 'package:go_yangon/screens/kiloCalculator_screen.dart';
+import 'package:go_yangon/screens/profile_screen.dart';
+import 'package:go_yangon/screens/setting_screen.dart';
+import 'package:latlong2/latlong.dart';
 
-class GoYangonHomePage extends StatelessWidget {
+class GoYangonHomePage extends StatefulWidget {
+  @override
+  _GoYangonHomePageState createState() => _GoYangonHomePageState();
+}
+
+class _GoYangonHomePageState extends State<GoYangonHomePage> {
+  LatLng? currentLocation;
+  bool isLoading = true;
+  int _currentIndex = 0; // Tracks the selected tab index
+
+  final List<Widget> _pages = [
+    KilocalculatorScreen(),
+    ProfileScreen(),
+    SettingScreen(),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                'Go Yangon',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                CircularValueWidget(label: 'KM', value: '0.00'),
-                CircularValueWidget(label: 'KS', value: '0.00'),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Icon(Icons.verified, size: 30, color: Colors.white),
-                  Icon(Icons.security, size: 30, color: Colors.white),
-                  Icon(Icons.train, size: 30, color: Colors.white),
-                  Icon(Icons.play_arrow, size: 30, color: Colors.white),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 20),
-                child: Icon(Icons.map, size: 40, color: Colors.white),
-              ),
-            ),
-            const Expanded(child: SizedBox()),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange[800],
-                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-              ),
-              onPressed: () {},
-              child: const Text('Start', style: TextStyle(color: Colors.white)),
-            ),
-            const SizedBox(height: 20),
-          ],
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: const Text(
+          'Go Yangon',
+          style: TextStyle(color: Colors.white),
         ),
+        actions: [
+          Badge.count(
+              offset: Offset(8, -8),
+              // textStyle: GoogleFonts.inter(
+              //     fontSize: 11, color: Colors.black87),
+              count: 1,
+              child: Icon(
+                Icons.notifications,
+                color: Colors.white,
+              )),
+          SizedBox(
+            width: 15,
+          ),
+        ],
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: _pages[_currentIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.speed),
-            label: 'Kilo calculator',
+            label: 'Kilo Calculator',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -70,13 +72,17 @@ class GoYangonHomePage extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'Setting',
           ),
         ],
-        selectedItemColor: Colors.black,
+        selectedItemColor: Colors.orange,
         unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
       ),
     );
   }
 }
+
+
+
+// Profile Tab
