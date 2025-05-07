@@ -1,0 +1,40 @@
+name: go_yangon
+
+description: A Flutter app UI inspired by "Go Yangon" design.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Additional dependencies can be added here
+
+  cupertino_icons: ^1.0.2
+  flutter_map: ^5.0.0
+  latlong2: ^0.9.1
+  geolocator: ^13.0.2
+  flutter_polyline_points: ^2.1.0
+  http: ^1.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
